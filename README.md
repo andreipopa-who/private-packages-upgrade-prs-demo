@@ -1,6 +1,21 @@
 # Upgrade PRs - Private Packages
 ## Publish - private deps releases
 1. Dispatch private deps release information via API. Use **POST https://apidocs.snyk.io/experimental?version=2023-11-20~experimental#post-/groups/-group_id-/packages** to submit private package data.
+```
+POST https://{{API_ENDPOINT}}/rest/groups/{{GROUP_ID}}/packages?version=2023-11-20~experimental
+{
+    "data": {
+        "type":"package",
+        "attributes": {
+            "name": "logger",
+            "namespace":"snyk",
+            "version": "2.0.1",
+            "type": "maven",
+            "published_date":"2022-03-15T06:42:15.341Z"
+        }
+    }
+}
+```
 2. Fetch recommendeded version using **GET https://apidocs.snyk.io/?version=2024-02-26~experimental#get-/groups/-group_id-/packages** .
 ```curl
 GET https://{{API_ENDPOINT}}/rest/groups/{{GROUP_ID}}/packages/recommended_version?version=2024-02-26%7Eexperimental&namespace=snyk&name=logger&type=maven&current_version=1.0.0&allow_major_version=true
